@@ -60,6 +60,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/customization_text_color_holder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -88,6 +89,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/customization_background_color_holder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -116,6 +118,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/customization_primary_color_holder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -144,6 +147,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+
                 android:id="@+id/customization_accent_color_holder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -173,6 +177,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/customization_app_icon_color_holder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
