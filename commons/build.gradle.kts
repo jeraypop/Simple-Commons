@@ -64,16 +64,50 @@ android {
     namespace = libs.versions.app.version.groupId.get()
 }
 
-publishing.publications {
-    create<MavenPublication>("release") {
-        groupId = libs.versions.app.version.groupId.get()
-        artifactId = name
-        version = libs.versions.app.version.versionName.get()
-        afterEvaluate {
-            from(components["release"])
+//publishing.publications {
+//    create<MavenPublication>("release") {
+////        groupId = libs.versions.app.version.groupId.get()
+////        artifactId = name
+////        version = libs.versions.app.version.versionName.get()
+//
+//        groupId = "com.github.jeraypop"
+//        artifactId = "myCommons"
+//        version = "1.0.0"
+//
+//        afterEvaluate {
+//            from(components["release"])
+//        }
+//    }
+//}
+
+// 配置发布任务
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                // 关联 release 构建输出
+                from(components["release"])
+
+                // 配置包信息
+                groupId = "io.github.jeraypop" // 修改此处
+                artifactId = "simple-commons"  // 建议与模块名一致
+                version = "1.0.0" // 确保每次发布递增版本号
+            }
+        }
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/jeraypop/Simple-Commons")
+                credentials {
+                    username = project.findProperty("gpr.user") as? String ?: System.getenv("GITHUB_USERNAME")
+                    password = project.findProperty("gpr.token") as? String ?: System.getenv("GITHUB_TOKEN")
+                }
+            }
         }
     }
 }
+
+
 
 dependencies {
     implementation(libs.kotlinx.serialization.json)

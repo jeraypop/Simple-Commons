@@ -184,7 +184,7 @@ class CustomizationActivity : BaseSimpleActivity() {
                 R.color.dark_grey,
                 android.R.color.white,
                 android.R.color.white,
-                R.color.color_primary))
+                android.R.color.black))
             put(
                 THEME_BLACK_WHITE,
                 MyTheme(getString(R.string.black_white),
@@ -465,16 +465,16 @@ class CustomizationActivity : BaseSimpleActivity() {
 //            applyToAll()
         }
 
-        binding.customizationAppIconColorHolder.setOnClickListener {
-            if (baseConfig.wasAppIconCustomizationWarningShown) {
-                pickAppIconColor()
-            } else {
-                ConfirmationDialog(this, "", R.string.app_icon_color_warning, R.string.ok, 0) {
-                    baseConfig.wasAppIconCustomizationWarningShown = true
-                    pickAppIconColor()
-                }
-            }
-        }
+//        binding.customizationAppIconColorHolder.setOnClickListener {
+//            if (baseConfig.wasAppIconCustomizationWarningShown) {
+//                pickAppIconColor()
+//            } else {
+//                ConfirmationDialog(this, "", R.string.app_icon_color_warning, R.string.ok, 0) {
+//                    baseConfig.wasAppIconCustomizationWarningShown = true
+//                    pickAppIconColor()
+//                }
+//            }
+//        }
     }
 
     private fun hasColorChanged(old: Int, new: Int) = Math.abs(old - new) > 1
