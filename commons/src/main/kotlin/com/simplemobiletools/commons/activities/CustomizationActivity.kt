@@ -183,14 +183,14 @@ class CustomizationActivity : BaseSimpleActivity() {
             put(THEME_WHITE, MyTheme(getString(R.string.white),
                 R.color.dark_grey,
                 android.R.color.white,
-                android.R.color.white,
+                android.R.color.black,
                 android.R.color.black))
             put(
                 THEME_BLACK_WHITE,
                 MyTheme(getString(R.string.black_white),
                     android.R.color.white,
                     android.R.color.black,
-                    android.R.color.black,
+                    android.R.color.white,
                     android.R.color.white)
             )
 //            put(THEME_CUSTOM, MyTheme(getString(R.string.custom), 0, 0, 0, 0))
