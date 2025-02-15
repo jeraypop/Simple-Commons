@@ -191,7 +191,7 @@ class CustomizationActivity : BaseSimpleActivity() {
                     android.R.color.white,
                     android.R.color.black,
                     android.R.color.black,
-                    android.R.color.black)
+                    android.R.color.white)
             )
 //            put(THEME_CUSTOM, MyTheme(getString(R.string.custom), 0, 0, 0, 0))
 
