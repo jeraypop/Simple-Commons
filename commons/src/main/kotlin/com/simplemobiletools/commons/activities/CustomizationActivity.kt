@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.drawable.LayerDrawable
 import android.graphics.drawable.RippleDrawable
 import android.os.Bundle
+import android.util.Log
 import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.databinding.ActivityCustomizationBinding
 import com.simplemobiletools.commons.dialogs.*
@@ -103,9 +104,12 @@ class CustomizationActivity : BaseSimpleActivity() {
 
     override fun onResume() {
         super.onResume()
+        //-16777216
+        Log.e("主题颜色", "=: "+getCurrentPrimaryColor() )
         setTheme(getThemeId(getCurrentPrimaryColor()))
 
         if (!baseConfig.isUsingSystemTheme) {
+            Log.e("主题颜色", "进来 ")
             updateBackgroundColor(getCurrentBackgroundColor())
             updateActionbarColor(getCurrentStatusBarColor())
         }
@@ -180,11 +184,7 @@ class CustomizationActivity : BaseSimpleActivity() {
 //                    R.color.md_red_700
 //                )
 //            )
-            put(THEME_WHITE, MyTheme(getString(R.string.white),
-                R.color.dark_grey,
-                android.R.color.white,
-                android.R.color.black,
-                android.R.color.black))
+
             put(
                 THEME_BLACK_WHITE,
                 MyTheme(getString(R.string.black_white),
@@ -193,6 +193,11 @@ class CustomizationActivity : BaseSimpleActivity() {
                     android.R.color.white,
                     android.R.color.white)
             )
+            put(THEME_WHITE, MyTheme(getString(R.string.white),
+                R.color.dark_grey,
+                android.R.color.white,
+                android.R.color.black,
+                android.R.color.black))
 //            put(THEME_CUSTOM, MyTheme(getString(R.string.custom), 0, 0, 0, 0))
 
             if (storedSharedTheme != null) {
@@ -209,14 +214,15 @@ class CustomizationActivity : BaseSimpleActivity() {
         updateAutoThemeFields()
         handleAccentColorLayout()
         binding.customizationThemeHolder.setOnClickListener {
-            if (baseConfig.wasAppIconCustomizationWarningShown) {
-                themePickerClicked()
-            } else {
-                ConfirmationDialog(this, "", R.string.app_icon_color_warning, R.string.ok, 0) {
-                    baseConfig.wasAppIconCustomizationWarningShown = true
-                    themePickerClicked()
-                }
-            }
+            themePickerClicked()
+//            if (baseConfig.wasAppIconCustomizationWarningShown) {
+//                themePickerClicked()
+//            } else {
+//                ConfirmationDialog(this, "", R.string.app_icon_color_warning, R.string.ok, 0) {
+//                    baseConfig.wasAppIconCustomizationWarningShown = true
+//                    themePickerClicked()
+//                }
+//            }
         }
 
         if (binding.customizationTheme.value == getMaterialYouString()) {
@@ -343,8 +349,9 @@ class CustomizationActivity : BaseSimpleActivity() {
         } else if (baseConfig.isUsingAutoTheme || curSelectedThemeId == THEME_AUTO) {
             return THEME_AUTO
         }
-
-        var themeId = THEME_CUSTOM
+        //THEME_WHITE
+        //THEME_CUSTOM
+        var themeId = THEME_BLACK_WHITE
         resources.apply {
             for ((key, value) in predefinedThemes.filter { it.key != THEME_CUSTOM && it.key != THEME_SHARED && it.key != THEME_AUTO && it.key != THEME_SYSTEM }) {
                 if (curTextColor == getColor(value.textColorId) &&
